@@ -8,7 +8,7 @@ RUN apt-get update && \
     apt-get install -y software-properties-common python-software-properties && \
     apt-get install -y curl wget &&  \
     apt-get install -y apt-transport-https && apt-get update
-    apt-get install -y python-tables
+RUN apt-get install -y python-tables
 RUN apt-get update && apt-get install -y libcurl4-openssl-dev && apt-get install -y libxml2-dev && apt-get install -y libmariadbclient-dev && apt-get install -y r-base
 RUN add-apt-repository ppa:openjdk-r/ppa && apt-get update 
 RUN apt-get install -y openjdk-8-jre && apt-get install -y libfreetype6-dev pkg-config python-dev python-pip
