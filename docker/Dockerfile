@@ -8,10 +8,6 @@ RUN apt-get update && \
     apt-get install -y software-properties-common python-software-properties && \
     apt-get install -y curl wget &&  \
     apt-get install -y apt-transport-https && apt-get update
-    pip install --upgrade pip
-    pip install numpy==1.9.3
-    pip install numexpr==1.4.1
-    pip install Cython==0.17
     apt-get install -y python-tables
 RUN apt-get update && apt-get install -y libcurl4-openssl-dev && apt-get install -y libxml2-dev && apt-get install -y libmariadbclient-dev && apt-get install -y r-base
 RUN add-apt-repository ppa:openjdk-r/ppa && apt-get update 
