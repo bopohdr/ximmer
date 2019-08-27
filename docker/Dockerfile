@@ -8,11 +8,9 @@ RUN apt-get update && \
     apt-get install -y software-properties-common python-software-properties && \
     apt-get install -y curl wget &&  \
     apt-get install -y apt-transport-https && apt-get update
-RUN sudo apt-get -qq -y install 	python2.7	cython 		libhdf5-serial-dev 		python-matplotlib 		python-numpy 		python-pip
-RUN sudo pip install 		pysam 		tables
 RUN apt-get update && apt-get install -y libcurl4-openssl-dev && apt-get install -y libxml2-dev && apt-get install -y libmariadbclient-dev && apt-get install -y r-base
 RUN add-apt-repository ppa:openjdk-r/ppa && apt-get update 
-RUN apt-get install -y openjdk-8-jre && apt-get install -y libfreetype6-dev pkg-config python-dev python-pip
+RUN apt-get install -y openjdk-8-jre && apt-get install -y libfreetype6-dev pkg-config python-dev python-pip python2.7	cython 		libhdf5-serial-dev		python-numpy 	 python-tables python-pandas python-pysam python-pytz
 RUN mkdir -p /usr/local/ximmer
 ADD bin /usr/local/ximmer/bin 
 ADD src /usr/local/ximmer/src
