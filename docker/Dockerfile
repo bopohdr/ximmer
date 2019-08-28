@@ -23,4 +23,3 @@ RUN cd /usr/local/ximmer && \
     cd /usr/local/ximmer/cache && wget 'http://hgdownload.soe.ucsc.edu/goldenPath/hg38/database/refGene.txt.gz' 
 ENV PATH="/usr/local/ximmer/bin:${PATH}"
 ENV JAVA_HOME="/usr/lib/jvm/java-8-openjdk-amd64/jre"
-
