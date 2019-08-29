@@ -19,8 +19,8 @@ RUN cd /usr/local/ximmer && \
     ./bin/install -q && \
     echo 'JAVA="java"' >> /usr/local/ximmer/eval/pipeline/config.groovy && \
     echo 'java { executable="java" }' >> /usr/local/ximmer/eval/pipeline/bpipe.config && \
-    cd /usr/local/ximmer; mkdir cache && cd cache && wget 'http://hgdownload.soe.ucsc.edu/goldenPath/hg19/database/dgvMerged.txt.gz' && \
-    cd /usr/local/ximmer/cache && wget 'http://hgdownload.soe.ucsc.edu/goldenPath/hg19/database/refGene.txt.gz' 
+    cd /usr/local/ximmer; mkdir cache && cd cache && wget 'http://hgdownload.soe.ucsc.edu/goldenPath/hg38/database/dgvMerged.txt.gz' && \
+    cd /usr/local/ximmer/cache && wget 'http://hgdownload.soe.ucsc.edu/goldenPath/hg38/database/refGene.txt.gz' 
 ENV PATH="/usr/local/ximmer/bin:${PATH}"
 ENV JAVA_HOME="/usr/lib/jvm/java-8-openjdk-amd64/jre"
 
