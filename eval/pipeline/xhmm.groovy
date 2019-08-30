@@ -77,7 +77,7 @@ gatk_depth_of_coverage = {
     
     from('bam', analysable_target) transform("sample_interval_summary") {
         exec """
-            $JAVA -Xmx2g -Djava.io.tmpdir=$TMPDIR -jar $GATK/GenomeAnalysisTK.jar 
+            $JAVA -Xmx20g -Djava.io.tmpdir=$TMPDIR -jar $GATK/GenomeAnalysisTK.jar 
                  -T DepthOfCoverage -I $input.bam
                  -L $input.bed
                  -R $HGFA
@@ -105,7 +105,7 @@ find_extreme_gc_content = {
     produce(file(input.bed).name + ".gc.txt", file(input.bed).name+".extremegc.txt") {
 
         exec """
-            $JAVA -Xmx3g -jar $GATK/GenomeAnalysisTK.jar 
+            $JAVA -Xmx20g -jar $GATK/GenomeAnalysisTK.jar 
                 -T GCContentByInterval 
                 -L $input.bed
                 -R $HGFA
@@ -128,7 +128,7 @@ xhmm_count_reads = {
 
             unset GROOVY_HOME
 
-            $JAVA -Xmx${memory}g -cp $GROOVY_ALL_JAR:$GNGS_JAR gngs.tools.MultiCov
+            $JAVA -Xmx$24g -cp $GROOVY_ALL_JAR:$GNGS_JAR gngs.tools.MultiCov
                     -targetmeans $output.sample_interval_summary
                     -bed $target_bed $inputs.bam > $output.bgz; 
         """, "calc_qc_stats"
