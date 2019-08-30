@@ -128,7 +128,7 @@ xhmm_count_reads = {
 
             unset GROOVY_HOME
 
-            $JAVA -Xmx$24g -cp $GROOVY_ALL_JAR:$GNGS_JAR gngs.tools.MultiCov
+            $JAVA -Xmx24g -cp $GROOVY_ALL_JAR:$GNGS_JAR gngs.tools.MultiCov
                     -targetmeans $output.sample_interval_summary
                     -bed $target_bed $inputs.bam > $output.bgz; 
         """, "calc_qc_stats"
