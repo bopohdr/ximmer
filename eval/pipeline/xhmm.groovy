@@ -60,7 +60,7 @@ gatk_depth_of_coverage = {
     
     transform("sample_interval_summary") {
         exec """
-            $JAVA -Xmx2g -Djava.io.tmpdir=$TMPDIR -jar $GATK/GenomeAnalysisTK.jar 
+            $JAVA -Xmx24g -Djava.io.tmpdir=$TMPDIR -jar $GATK/GenomeAnalysisTK.jar 
                  -T DepthOfCoverage 
                  ${inputs.bam.withFlag("-I")}
                  -L $input.bed
@@ -89,7 +89,7 @@ find_extreme_gc_content = {
     produce(file(input.bed).name + ".gc.txt", file(input.bed).name+".extremegc.txt") {
 
         exec """
-            $JAVA -Xmx3g -jar $GATK/GenomeAnalysisTK.jar 
+            $JAVA -Xmx24g -jar $GATK/GenomeAnalysisTK.jar 
                 -T GCContentByInterval 
                 -L $input.bed
                 -R $HGFA
