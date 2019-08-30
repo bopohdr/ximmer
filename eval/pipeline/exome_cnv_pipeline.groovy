@@ -113,6 +113,8 @@ analysable_chromosomes = chromosomes.clone()
     
 println "Chromosomes for analysis are: $chromosomes"
 
+codex_split_chrs=true
+
 load 'excavator.groovy'
 load 'xhmm.groovy'
 load 'exome_depth.groovy'
