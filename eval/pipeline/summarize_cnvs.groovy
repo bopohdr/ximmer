@@ -19,7 +19,7 @@ extract_cnv_regions = {
         exec """
              set -o pipefail
 
-             JAVA_OPTS="-Xmx1g -noverify" $GROOVY -cp $TOOLS/groovy-ngs-utils/1.0/groovy-ngs-utils.jar -e 'new RangedData("$input.tsv").load().each { println([it.chr, it.from-$slop, it.to+$slop].join("\\t"))  }' | 
+             JAVA_OPTS="-Xmx20g -noverify" $GROOVY -cp $TOOLS/groovy-ngs-utils/1.0/groovy-ngs-utils.jar -e 'new RangedData("$input.tsv").load().each { println([it.chr, it.from-$slop, it.to+$slop].join("\\t"))  }' | 
                  $SAMTOOLS view -b -L - jinput.bam > $output.bam
         """
     }
@@ -59,7 +59,7 @@ plot_cnv_coverage = {
         exec """
             unset GROOVY_HOME 
 
-            JAVA_OPTS="-Xmx8g -Djava.awt.headless=true -noverify" $GROOVY -cp $GNGS_JAR:$XIMMER_SRC $XIMMER_SRC/CNVDiagram.groovy
+            JAVA_OPTS="-Xmx28g -Djava.awt.headless=true -noverify" $GROOVY -cp $GNGS_JAR:$XIMMER_SRC $XIMMER_SRC/CNVDiagram.groovy
                 -chr $chromosome
                 -cnvs $input.tsv
                 -ref $HGFA
@@ -93,7 +93,7 @@ create_cnv_report = {
         sample_map: false,
         DDD_CNVS: false,
         file_name_prefix : "",
-        mergeOverlapFraction: 0.4,
+        mergeOverlapFraction: 0.7,
         cnvMergeMode: "sharedtargets"
          ] + 
             batch_cnv_results*.key.collectEntries {  caller_label ->
@@ -145,7 +145,7 @@ create_cnv_report = {
         exec """
             unset GROOVY_HOME
 
-            JAVA_OPTS="-Xmx12g -noverify" $GROOVY -cp $GNGS_JAR:$XIMMER_SRC:$XIMMER_SRC/../resources:$XIMMER_SRC/../js $XIMMER_SRC/SummarizeCNVs.groovy
+            JAVA_OPTS="-Xmx24g -noverify" $GROOVY -cp $GNGS_JAR:$XIMMER_SRC:$XIMMER_SRC/../resources:$XIMMER_SRC/../js $XIMMER_SRC/SummarizeCNVs.groovy
                 -target $target_bed ${caller_opts.join(" ")} $refGeneOpts
                 ${inputs.vcf.withFlag("-vcf")} ${inputs.vcf.gz.withFlag("-vcf")} -bampath "$bam_file_path"
                 -tsv $output.tsv -json $output.json ${imgpath?"-imgpath "+imgpath.replaceAll('#batch#',batch_name):""} -mergefrac $mergeOverlapFraction
@@ -205,7 +205,7 @@ calc_qc_stats = {
 
             unset GROOVY_HOME
 
-            $JAVA -Xmx${memory}g -cp $GROOVY_ALL_JAR:$GNGS_JAR gngs.tools.MultiCov
+            $JAVA -Xmx28g -cp $GROOVY_ALL_JAR:$GNGS_JAR gngs.tools.MultiCov
                     -cvj $output.js
                     -stats 
                     -cv  
