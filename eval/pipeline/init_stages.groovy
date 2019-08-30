@@ -90,7 +90,7 @@ select_controls = {
     
     produce('filtered_controls.txt') {
         exec """
-            JAVA_OPTS="-Xmx8g -Djava.awt.headless=true -noverify" $GROOVY -cp $GNGS_JAR:$XIMMER_SRC $XIMMER_SRC/ximmer/FilterControls.groovy
+            JAVA_OPTS="-Xmx24g -Djava.awt.headless=true -noverify" $GROOVY -cp $GNGS_JAR:$XIMMER_SRC $XIMMER_SRC/ximmer/FilterControls.groovy
                 -corr $input.correlations.js
                 -thresh $control_correlation_threshold ${control_samples.collect { '-control ' + it}.join(' ')}
                 > $output.txt
