@@ -25,7 +25,7 @@ then
     export JAVA_HOME=`dirname $(which java) | xargs dirname`
 fi
 
-: ${XIMMER_MEM:=20g}
+: ${XIMMER_MEM:=24g}
 JAVA_OPTS="-Xmx$XIMMER_MEM -noverify -Dsamjdk.reference_fasta=$XIMMER_REF -Dsnappy.disable=true -Djava.io.tmpdir=./.ximmertmp -Dximmer.base=$BASE"
 
 export JAVA_OPTS
